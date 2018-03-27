@@ -1,6 +1,4 @@
 .DS_Store
-.idea/shelf
-/android.tests.dependencies
 /confluence/target
 /dependencies
 /dist
@@ -38,3 +36,4 @@ build/
 .idea/compiler.xml
 .idea/inspectionProfiles/profiles_settings.xml
 .idea/.name
+.idea/
