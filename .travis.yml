@@ -8,4 +8,4 @@ before_install:
 script:
   - ./gradlew clean test --info
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+  - bash <(curl -s https://codecov.io/bash) -t c9ca6ffb-4a66-4e26-b11e-654f8a359b3c
