@@ -33,6 +33,7 @@ val test by tasks.getting(Test::class) {
 
 repositories {
     mavenCentral()
+    maven("https://dl.bintray.com/kotlin/exposed")
 }
 
 dependencies {
@@ -42,6 +43,8 @@ dependencies {
     compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     compile("org.jetbrains.kotlin:kotlin-reflect")
     compile("com.fasterxml.jackson.module:jackson-module-kotlin")
+    compile("org.jetbrains.exposed:exposed:0.10.2")
+    compile("org.jetbrains.exposed:spring-transaction:0.10.2")
     testCompile("org.springframework.boot:spring-boot-starter-test") {
         exclude(module = "junit")
     }
