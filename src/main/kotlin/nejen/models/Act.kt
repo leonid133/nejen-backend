@@ -1,9 +1,11 @@
-package model
+package nejen.models
 
 import org.jetbrains.exposed.dao.EntityID
 import org.jetbrains.exposed.dao.IntEntity
 import org.jetbrains.exposed.dao.IntEntityClass
 import org.jetbrains.exposed.dao.IntIdTable
+import org.jetbrains.exposed.sql.transactions.transaction
+import org.joda.time.DateTime
 
 object ActTable : IntIdTable() {
     val rents = reference("rents", RentsTable)
@@ -23,4 +25,17 @@ class ActItem(id: EntityID<Int>) : IntEntity(id) {
     var stop_date by ActTable.stop_date
     var term by ActTable.term
     var payment by ActTable.payment
+}
+
+class ActDTO(var rents: RentsDTO, var shelf: ShelfDTO, var start_date: DateTime, var stop_date: DateTime, var term: String, var payment: String)
+
+fun ActItem.getDto(): ActDTO {
+    val actItem = this
+    return transaction {
+        return@transaction ActDTO(actItem.rents.getDto(), actItem.shelf.getDto(), actItem.start_date, actItem.stop_date, actItem.term, actItem.payment)
+    }
+}
+
+fun List<ActItem>.getDto(): List<ActDTO> {
+    return this.map { it.getDto() }
 }
